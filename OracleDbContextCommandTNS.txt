@@ -1,0 +1,17 @@
+Scaffold-DbContext "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=erpprd)(PORT=1528))(CONNECT_DATA=(SERVICE_NAME=MEDIAPDB)));User Id=city_media;Password=citymedia.it;;Persist Security Info=True" Oracle.EntityFrameworkCore -Output EntityModels/OraModel -Force
+
+Scaffold-DbContext "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=erpprd)(PORT=1525))(CONNECT_DATA=(SERVICE_NAME=hrdpdb)));User Id=hr_job_app;Password=hr_job_it;;Persist Security Info=True" Oracle.EntityFrameworkCore -Output JobEntityModel/JobOraModelTest -Force
+
+
+Scaffold-DbContext "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=erpprd)(PORT=1525))(CONNECT_DATA=(SERVICE_NAME=hrdpdb)));User Id=hr_job_app;Password=hr_job_it;" Oracle.EntityFrameworkCore -OutputDir JobEntityModel/HrJobTable -Tables HR.T_ACMP,HR.T_DEPT,HR.T_DIST,HR.T_DIVISION,HR.T_DSIG,HR.T_UPZL -Force
+
+
+
+
+
+
+
+
+
+
+InsideScafoldDbContext: Select DataModel
