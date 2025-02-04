@@ -1,3 +1,18 @@
 Get data between two data: TRUNC(apply_date) here using trunc that means if start date 01-01-2024 to 05-01-2024. if i dont use trunc we can not get data 05-01-2024 08h 04m 06s
 SELECT * FROM t_job_applicant_master where TRUNC(apply_date) BETWEEN TO_DATE('2024-10-03','YYYY-MM-DD') AND TO_DATE('2024-10-06','YYYY-MM-DD')
 
+Retrive all data 
+process 1:SELECT JSON_ARRAYAGG( JSON_OBJECT('EMP_ID' VALUE OID,'EMPNMAE' VALUE NAME, 'EMP_GENDER' VALUE GENDER, 'EMP_NID' VALUE NID)) FROM t_job_applicant_master;
+
+process 2:SELECT JSON_ARRAYAGG( JSON_OBJECT('EMP_OID' IS WMD.EOID,'EMP_NAME' IS WMD.ENAME, 'EMP_NID' IS WMD.ENID,'EMP_GENDER' IS WMD.EGENDER)
+FORMAT JSON ORDER BY WMD.EOID DESC)AS JSON_DOC
+
+FROM (
+SELECT NVL(WM.OID,0) AS EOID,
+TO_CHAR(NVL(WM.NAME,'')) AS ENAME,
+TO_CHAR(NVL(WM.NID,'')) AS ENID,
+TO_CHAR(NVL(WM.GENDER,'')) AS EGENDER 
+FROM t_job_applicant_master WM
+
+  )WMD;
+
