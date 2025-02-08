@@ -16,3 +16,13 @@ FROM t_job_applicant_master WM
 
   )WMD;
 
+Process 3:
+ SELECT JSON_ARRAYAGG(
+    JSON_OBJECT(
+        'emp_oid' is mstr.oid,
+        'emp_name' is mstr.name,
+        'emp_gender' is mstr.gender
+    ) FORMAT JSON RETURNING CLOB
+) AS json_doc
+FROM t_job_applicant_master mstr;
+
