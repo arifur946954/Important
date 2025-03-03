@@ -1,0 +1,23 @@
+SELECT * FROM JSON_TABLE(
+       '[
+  {
+    "sprod_text": "039065",
+    "sprod_name": "TEER MURI 510 GM PACKET",
+    "sprod_opdt": "02-05-21"
+  },
+  {
+    "sprod_text": "039066",
+    "sprod_name": "TEER MURI 520 GM PACKET",
+    "sprod_opdt": "02-05-21"
+  },
+  {
+    "sprod_text": "039067",
+    "sprod_name": "TEER MURI 510 GM PACKET",
+    "sprod_opdt": "02-05-21"
+  }
+]'
+       , '$[*]' COLUMNS (
+        nSPROD_TEXT        VARCHAR2(50) PATH  '$.sprod_text'
+        ,nSPROD_NAME       VARCHAR2(100) PATH  '$.sprod_name'
+        ,nSPROD_OPDT       VARCHAR2(20) PATH  '$.sprod_opdt' 
+)) AS sprod;
