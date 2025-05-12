@@ -1,3 +1,11 @@
 Image show in rdlc from database with imagePath:
 Image source:DataBase
 Use this field: =System.IO.File.ReadAllBytes(First(Fields!imagePath.Value, "DataSet1"))
+
+MIME TYPE: =Switch(
+  LCase(First(Fields!imagePath.Value, "DataSet1")).EndsWith(".jpg") Or LCase(First(Fields!imagePath.Value, "DataSet1")).EndsWith(".jpeg"), "image/jpeg",
+  LCase(First(Fields!imagePath.Value, "DataSet1")).EndsWith(".png"), "image/png",
+  LCase(First(Fields!imagePath.Value, "DataSet1")).EndsWith(".bmp"), "image/bmp",
+  LCase(First(Fields!imagePath.Value, "DataSet1")).EndsWith(".gif"), "image/gif",
+  True, "image/jpeg"
+)
