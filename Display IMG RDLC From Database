@@ -9,3 +9,7 @@ MIME TYPE: =Switch(
   LCase(First(Fields!imagePath.Value, "DataSet1")).EndsWith(".gif"), "image/gif",
   True, "image/jpeg"
 )
+
+
+Row Visibility Show Or Hide: =First(Fields!course_name.Value)=nothing
+Serial No of Row : =RowNumber(Nothing)
