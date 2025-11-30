@@ -1,0 +1,21 @@
+  public async Task<DataTable> GetByIDS(vmCmnParameter param)
+  {
+      DataTable dt = new DataTable();
+
+      using (var conn = new OracleConnection(StaticInfos.conStringOracle.ToString()))
+      {
+          string sql = "SELECT OID, JOB_TITLE, COMPANY,DEPARTMENT FROM T_ADMIN_JOB_POST_MASTER WHERE OID = :pID";
+
+          using (var cmd = new OracleCommand(sql, conn))
+          {
+              cmd.Parameters.Add("pID", OracleDbType.Varchar2).Value = param.strId;
+
+              using (var da = new OracleDataAdapter(cmd))
+              {
+                  da.Fill(dt);
+              }
+          }
+      }
+
+      return dt;
+  }
